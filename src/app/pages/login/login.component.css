@@ -1,0 +1,22 @@
+.center {
+  display: flex;
+  background-color: #fde9ec;
+  justify-content: center;
+  height: 100vh;
+}
+
+.center form {
+  align-self: center;
+}
+
+.anchor-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.anchor-link {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+}

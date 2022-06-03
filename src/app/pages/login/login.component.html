@@ -1,0 +1,106 @@
+<div class="center">
+  <form [formGroup]="loginForm" class="col-lg-4 col-md-4 col-sm-4">
+    <div class="card">
+      <div class="card-header text-center">
+        <img class="mb-2 mt-2" src="assets/thumbnail.png" height="25px" />
+      </div>
+
+      <div class="card-body">
+        <div class="form-group">
+          <label>Email</label>
+          <input formControlName="dsEmail" class="form-control" type="email" />
+        </div>
+
+        <div class="form-group">
+          <label>Senha</label>
+          <input
+            formControlName="dsPassword"
+            class="form-control"
+            type="password"
+          />
+          <small class="form-text text-muted text-left mb-4">
+            <a class="anchor-link" (click)="openSignUpModal(content)"
+              >Esqueci minha senha</a
+            >
+          </small>
+        </div>
+
+        <button class="btn btn-lg btn-primary mt-5 w-100" (click)="signIn()">
+          <span>Entrar</span>
+          <span
+            *ngIf="isProcessingSignIn"
+            class="spinner-border spinner-border-sm ml-2"
+          ></span>
+        </button>
+
+        <small class="form-text text-muted text-center mb-4">
+          Ainda não se registrou?
+          <a class="anchor-link" (click)="openSignUpModal(content)"
+            >Clique aqui!</a
+          >
+        </small>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Cadastro</h4>
+
+    <button type="button" class="btn" (click)="modal.dismiss('')">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div [formGroup]="signUpForm" class="modal-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nome</label>
+      <input formControlName="dsName" ngbAutofocus class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input formControlName="dsEmail" class="form-control" type="email" />
+      <small class="form-text text-muted"
+        >Informe um endereço de e-mail válido para confirmar seu
+        cadastro!</small
+      >
+    </div>
+
+    <div class="alert alert-warning">
+      <label
+        ><strong>Aviso: </strong> Este sistema foi desenvolvido apenas como
+        Prova de Conceito. Os dados informados nunca serão compartilhados e você
+        pode optar por deletar sua conta automaticamente.
+      </label>
+    </div>
+
+    <div class="form-group form-check">
+      <input
+        formControlName="stDeleteAccount"
+        class="form-check-input"
+        type="checkbox"
+      />
+
+      <label class="form-check-label">Deletar minha conta daqui 1 dia</label>
+    </div>
+
+    <app-server-error-messages
+      [server-error-messages]="serverErrorMessages"
+    ></app-server-error-messages>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.dismiss('')">
+      Fechar
+    </button>
+
+    <button class="btn btn-success" type="button" (click)="signUp(modal)">
+      <span>Confirmar</span>
+      <span
+        *ngIf="isProcessingSignUp"
+        class="spinner-border spinner-border-sm ml-2"
+      ></span>
+    </button>
+  </div>
+</ng-template>
